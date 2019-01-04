@@ -6,26 +6,31 @@ namespace BusScheduleApp.Services
 {
     class BusService
     {
-        private IRepository<Bus> busRepository;
+        private readonly IRepository<Bus> _busRepository;
 
         public BusService()
         {
-            busRepository = new BusRepository();
+            _busRepository = new BusRepository();
         }
 
         public List<Bus> GetAllBusSchedules()
         {
-            return busRepository.GetAllBusSchedules();
+            return _busRepository.GetAllBusSchedules();
         }
 
         public void AddNewBus(Bus bus)
         {
-            busRepository.Create(bus);
+            _busRepository.Create(bus);
         }
 
         public void DeleteAllBuses()
         {
-            busRepository.DeleteAll();
+            _busRepository.DeleteAll();
+        }
+
+        public void DeleteBus(Bus bus)
+        {
+            _busRepository.Delete(bus);
         }
     }
 }

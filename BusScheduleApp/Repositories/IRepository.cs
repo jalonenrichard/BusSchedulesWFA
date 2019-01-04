@@ -4,7 +4,6 @@ namespace BusScheduleApp.Repositories
 {
     interface IRepository<T>
     {
-        T GetBusByBusNumber(string busNumber);
         List<T> GetAllBusSchedules();
         void Create(T bus);
         void Delete(T bus);

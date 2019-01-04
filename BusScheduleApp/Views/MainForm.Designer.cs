@@ -1,4 +1,4 @@
-﻿namespace BusScheduleApp
+﻿namespace BusScheduleApp.Views
 {
     partial class MainForm
     {
@@ -91,6 +91,7 @@
             this.delete_button.TabIndex = 9;
             this.delete_button.Text = "Delete Selected";
             this.delete_button.UseVisualStyleBackColor = true;
+            this.delete_button.Click += new System.EventHandler(this.delete_button_Click);
             // 
             // add_button
             // 

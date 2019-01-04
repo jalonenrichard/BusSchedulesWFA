@@ -49,7 +49,6 @@
             this.bus_number_textbox.Name = "bus_number_textbox";
             this.bus_number_textbox.Size = new System.Drawing.Size(364, 20);
             this.bus_number_textbox.TabIndex = 0;
-            this.bus_number_textbox.TextChanged += new System.EventHandler(this.bus_number_textbox_TextChanged);
             // 
             // departing_station_textbox
             // 

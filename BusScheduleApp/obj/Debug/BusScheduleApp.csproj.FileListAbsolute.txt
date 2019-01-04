@@ -2,7 +2,6 @@ C:\Users\Richard\Desktop\git\BusSchedulesWFA\BusScheduleApp\obj\Debug\BusSchedul
 C:\Users\Richard\Desktop\git\BusSchedulesWFA\BusScheduleApp\obj\Debug\BusScheduleApp.Properties.Resources.resources
 C:\Users\Richard\Desktop\git\BusSchedulesWFA\BusScheduleApp\obj\Debug\BusScheduleApp.Views.AddBusForm.resources
 C:\Users\Richard\Desktop\git\BusSchedulesWFA\BusScheduleApp\obj\Debug\BusScheduleApp.Views.EditBusForm.resources
-C:\Users\Richard\Desktop\git\BusSchedulesWFA\BusScheduleApp\obj\Debug\BusScheduleApp.MainForm.resources
 C:\Users\Richard\Desktop\git\BusSchedulesWFA\BusScheduleApp\obj\Debug\BusScheduleApp.csproj.GenerateResource.cache
 C:\Users\Richard\Desktop\git\BusSchedulesWFA\BusScheduleApp\obj\Debug\BusScheduleApp.csproj.CoreCompileInputs.cache
 C:\Users\Richard\Desktop\git\BusSchedulesWFA\BusScheduleApp\bin\Debug\BusScheduleApp.exe.config
@@ -20,3 +19,4 @@ C:\Users\Richard\Desktop\git\BusSchedulesWFA\BusScheduleApp\bin\Debug\System.Dat
 C:\Users\Richard\Desktop\git\BusSchedulesWFA\BusScheduleApp\obj\Debug\BusScheduleApp.csproj.CopyComplete
 C:\Users\Richard\Desktop\git\BusSchedulesWFA\BusScheduleApp\obj\Debug\BusScheduleApp.exe
 C:\Users\Richard\Desktop\git\BusSchedulesWFA\BusScheduleApp\obj\Debug\BusScheduleApp.pdb
+C:\Users\Richard\Desktop\git\BusSchedulesWFA\BusScheduleApp\obj\Debug\BusScheduleApp.Views.MainForm.resources

@@ -1,43 +1,65 @@
 ﻿using System.Windows.Forms;
+using BusScheduleApp.Models;
 using BusScheduleApp.Services;
-using BusScheduleApp.Views;
 
-namespace BusScheduleApp
+namespace BusScheduleApp.Views
 {
     public partial class MainForm : Form
     {
-        private BusService busService;
+        private readonly BusService _busService;
 
         public MainForm()
         {
             InitializeComponent();
-            busService = new BusService();
+            _busService = new BusService();
             PopulateListView();
         }
 
         public void PopulateListView()
         {
-            foreach (var bus in busService.GetAllBusSchedules())
+            foreach (var bus in _busService.GetAllBusSchedules())
             {
-                ListViewItem row = new ListViewItem(bus.BusNumber);
+                ListViewItem row = new ListViewItem(bus.BusNumber) {Tag = bus};
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, bus.DepartingStation));
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, bus.DestinationStation));
-                row.SubItems.Add(new ListViewItem.ListViewSubItem(row, bus.DepartingTime.ToString()));
-                row.SubItems.Add(new ListViewItem.ListViewSubItem(row, bus.ArrivalTime.ToString()));
+                row.SubItems.Add(new ListViewItem.ListViewSubItem(row, bus.DepartingTime));
+                row.SubItems.Add(new ListViewItem.ListViewSubItem(row, bus.ArrivalTime));
                 bus_schedules_listview.Items.Add(row);
             }
         }
 
+        public void AddBusToListView()
+        {
+            bus_schedules_listview.Items.Clear();
+            PopulateListView();
+        }
+
         private void add_button_Click(object sender, System.EventArgs e)
         {
-            AddBusForm addBusForm = new AddBusForm(bus_schedules_listview);
+            AddBusForm addBusForm = new AddBusForm(this);
             addBusForm.Show();
         }
 
         private void delete_all_button_Click(object sender, System.EventArgs e)
         {
-            busService.DeleteAllBuses();
-            bus_schedules_listview.Items.Clear();
+            DialogResult userChoice = MessageBox.Show("Delete all entries?", "Warning", MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+            if (userChoice == DialogResult.Yes)
+            {
+                _busService.DeleteAllBuses();
+                bus_schedules_listview.Items.Clear();
+            }
+        }
+
+        private void delete_button_Click(object sender, System.EventArgs e)
+        {
+            if (bus_schedules_listview.SelectedItems.Count > 0)
+            {
+                Bus bus = (Bus) bus_schedules_listview.SelectedItems[0].Tag;
+                _busService.DeleteBus(bus);
+                bus_schedules_listview.SelectedItems[0].Remove();
+                bus_schedules_listview.Update();
+            }
         }
     }
 }
