@@ -13,7 +13,7 @@ namespace BusScheduleApp.Repositories
             List<Bus> busScheduleList = new List<Bus>();
 
             OpenBusDbConnection();
-            string sql = "select * from BusSchedules order by departing_time";
+            string sql = "SELECT * FROM BusSchedules ORDER BY departing_time";
             SQLiteCommand command = new SQLiteCommand(sql, MDbConnection);
             SQLiteDataReader reader = command.ExecuteReader();
             while (reader.Read())
@@ -37,8 +37,8 @@ namespace BusScheduleApp.Repositories
         public void Create(Bus bus)
         {
             string sql =
-                "insert into BusSchedules (bus_number, departing_station, destination_station, departing_time, arrival_time) " +
-                "values (@param1, @param2, @param3, @param4, @param5 )";
+                "INSERT INTO BusSchedules (bus_number, departing_station, destination_station, departing_time, arrival_time) " +
+                "VALUES (@param1, @param2, @param3, @param4, @param5 )";
             OpenBusDbConnection();
             SQLiteCommand command = new SQLiteCommand(sql, MDbConnection)
             {
@@ -70,7 +70,7 @@ namespace BusScheduleApp.Repositories
 
         public void DeleteAll()
         {
-            string sql = "delete from BusSchedules where 1=1";
+            string sql = "DELETE FROM BusSchedules WHERE 1=1";
             OpenBusDbConnection();
             SQLiteCommand command = new SQLiteCommand(sql, MDbConnection);
             command.ExecuteNonQuery();
