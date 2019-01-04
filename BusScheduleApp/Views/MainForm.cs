@@ -42,7 +42,7 @@ namespace BusScheduleApp.Views
 
         private void delete_all_button_Click(object sender, System.EventArgs e)
         {
-            DialogResult userChoice = MessageBox.Show("Delete all entries?", "Warning", MessageBoxButtons.YesNo,
+            DialogResult userChoice = MessageBox.Show(@"Delete all entries?", @"Warning", MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning);
             if (userChoice == DialogResult.Yes)
             {
@@ -59,6 +59,16 @@ namespace BusScheduleApp.Views
                 _busService.DeleteBus(bus);
                 bus_schedules_listview.SelectedItems[0].Remove();
                 bus_schedules_listview.Update();
+            }
+        }
+
+        private void edit_button_Click(object sender, System.EventArgs e)
+        {
+            if (bus_schedules_listview.SelectedItems.Count > 0)
+            {
+                Bus bus = (Bus) bus_schedules_listview.SelectedItems[0].Tag;
+                EditBusForm editBusForm = new EditBusForm(this, bus);
+                editBusForm.Show();
             }
         }
     }

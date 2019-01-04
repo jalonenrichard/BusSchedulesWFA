@@ -32,5 +32,10 @@ namespace BusScheduleApp.Services
         {
             _busRepository.Delete(bus);
         }
+
+        public void UpdateBus(Bus bus)
+        {
+            _busRepository.Update(bus);
+        }
     }
 }
