@@ -8,16 +8,16 @@ namespace BusScheduleApp.Views
 {
     public partial class EditBusForm : Form
     {
-        private Bus _bus;
-        private BusService _busService;
-        private MainForm _mainForm;
+        private readonly Bus _bus;
+        private readonly BusService _busService;
+        private readonly MainForm _mainForm;
 
         public EditBusForm(MainForm mainForm, Bus bus)
         {
+            InitializeComponent();
             _busService = new BusService();
             _mainForm = mainForm;
             _bus = bus;
-            InitializeComponent();
             departing_dateTimePicker.Format = DateTimePickerFormat.Custom;
             departing_dateTimePicker.CustomFormat = @"dd.MM.yyy HH:mm";
             arrival_dateTimePicker.Format = DateTimePickerFormat.Custom;
@@ -36,7 +36,7 @@ namespace BusScheduleApp.Views
 
         private void add_button_Click(object sender, EventArgs e)
         {
-            if (!AreAllFieldsFilled())
+            if (!FieldsFilledCorrectly())
                 return;
             if (!ValuesChanged())
             {
@@ -45,7 +45,7 @@ namespace BusScheduleApp.Views
             }
 
             _busService.DeleteBus(_bus);
-            _busService.AddNewBus(new Bus()
+            _busService.AddNewBus(new Bus
             {
                 BusNumber = bus_number_textbox.Text,
                 DepartingStation = departing_station_textbox.Text,
@@ -57,20 +57,12 @@ namespace BusScheduleApp.Views
             Close();
         }
 
-        private bool ValuesChanged()
-        {
-            return bus_number_textbox.Text != _bus.BusNumber ||
-                   departing_station_textbox.Text != _bus.DepartingStation ||
-                   destination_station_textbox.Text != _bus.DestinationStation ||
-                   departing_dateTimePicker.Value != _bus.DepartingTime ||
-                   arrival_dateTimePicker.Value != _bus.ArrivalTime;
-        }
-
-        private bool AreAllFieldsFilled()
+        private bool FieldsFilledCorrectly()
         {
             bool numberFieldFilled = true;
             bool departingFieldFilled = true;
             bool destinationFieldFilled = true;
+            bool datesCorrect = true;
 
             if (String.IsNullOrEmpty(bus_number_textbox.Text))
             {
@@ -90,17 +82,34 @@ namespace BusScheduleApp.Views
                 destinationFieldFilled = false;
             }
 
+            if (DateTime.Compare(departing_dateTimePicker.Value, arrival_dateTimePicker.Value) >= 0)
+            {
+                arrival_time_label.ForeColor = Color.Crimson;
+                datesCorrect = false;
+            }
+
             if (numberFieldFilled)
                 bus_number_label.ResetForeColor();
             if (departingFieldFilled)
                 departing_station_label.ResetForeColor();
             if (destinationFieldFilled)
                 destination_station_label.ResetForeColor();
+            if (datesCorrect)
+                arrival_time_label.ResetForeColor();
 
-            if (numberFieldFilled && departingFieldFilled && destinationFieldFilled)
+            if (numberFieldFilled && departingFieldFilled && destinationFieldFilled && datesCorrect)
                 return true;
 
             return false;
+        }
+
+        private bool ValuesChanged()
+        {
+            return bus_number_textbox.Text != _bus.BusNumber ||
+                   departing_station_textbox.Text != _bus.DepartingStation ||
+                   destination_station_textbox.Text != _bus.DestinationStation ||
+                   departing_dateTimePicker.Value != _bus.DepartingTime ||
+                   arrival_dateTimePicker.Value != _bus.ArrivalTime;
         }
 
         private void cancel_button_Click(object sender, EventArgs e)

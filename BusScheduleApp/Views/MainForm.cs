@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 using BusScheduleApp.Models;
 using BusScheduleApp.Services;
 
@@ -36,13 +37,13 @@ namespace BusScheduleApp.Views
             PopulateListView();
         }
 
-        private void add_button_Click(object sender, System.EventArgs e)
+        private void add_button_Click(object sender, EventArgs e)
         {
             AddBusForm addBusForm = new AddBusForm(this);
             addBusForm.Show();
         }
 
-        private void delete_all_button_Click(object sender, System.EventArgs e)
+        private void delete_all_button_Click(object sender, EventArgs e)
         {
             DialogResult userChoice = MessageBox.Show(@"Delete all entries?", @"Warning", MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning);
@@ -53,7 +54,7 @@ namespace BusScheduleApp.Views
             }
         }
 
-        private void delete_button_Click(object sender, System.EventArgs e)
+        private void delete_button_Click(object sender, EventArgs e)
         {
             if (bus_schedules_listview.SelectedItems.Count > 0)
             {
@@ -64,7 +65,7 @@ namespace BusScheduleApp.Views
             }
         }
 
-        private void edit_button_Click(object sender, System.EventArgs e)
+        private void edit_button_Click(object sender, EventArgs e)
         {
             if (bus_schedules_listview.SelectedItems.Count > 0)
             {
@@ -74,7 +75,7 @@ namespace BusScheduleApp.Views
             }
         }
 
-        private void bus_schedules_listview_SelectedIndexChanged(object sender, System.EventArgs e)
+        private void bus_schedules_listview_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (bus_schedules_listview.SelectedItems.Count > 0)
             {
@@ -85,6 +86,56 @@ namespace BusScheduleApp.Views
             {
                 edit_button.Enabled = false;
                 delete_button.Enabled = false;
+            }
+        }
+
+        private void special_func_button_Click(object sender, EventArgs e)
+        {
+            LongestRides longestRides = new LongestRides();
+            longestRides.Show();
+        }
+
+        private void up_one_element_button_Click(object sender, EventArgs e)
+        {
+            if (bus_schedules_listview.SelectedItems.Count > 0)
+            {
+                var selectedItem = bus_schedules_listview.SelectedItems[0];
+                int selectedItemIndex = bus_schedules_listview.Items.IndexOf(selectedItem);
+                if (selectedItemIndex > 0)
+                    selectedItemIndex--;
+                bus_schedules_listview.Focus();
+                bus_schedules_listview.Items[selectedItemIndex].Selected = true;
+            }
+        }
+
+        private void down_one_element_button_Click(object sender, EventArgs e)
+        {
+            if (bus_schedules_listview.SelectedItems.Count > 0)
+            {
+                var selectedItem = bus_schedules_listview.SelectedItems[0];
+                int selectedItemIndex = bus_schedules_listview.Items.IndexOf(selectedItem);
+                if (selectedItemIndex < bus_schedules_listview.Items.Count - 1)
+                    selectedItemIndex++;
+                bus_schedules_listview.Focus();
+                bus_schedules_listview.Items[selectedItemIndex].Selected = true;
+            }
+        }
+
+        private void first_element_button_Click(object sender, EventArgs e)
+        {
+            if (bus_schedules_listview.Items.Count > 0)
+            {
+                bus_schedules_listview.Focus();
+                bus_schedules_listview.Items[0].Selected = true;
+            }
+        }
+
+        private void last_element_button_Click(object sender, EventArgs e)
+        {
+            if (bus_schedules_listview.Items.Count > 0)
+            {
+                bus_schedules_listview.Focus();
+                bus_schedules_listview.Items[bus_schedules_listview.Items.Count - 1].Selected = true;
             }
         }
     }

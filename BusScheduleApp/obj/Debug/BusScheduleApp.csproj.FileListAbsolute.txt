@@ -20,3 +20,4 @@ C:\Users\Richard\Desktop\git\BusSchedulesWFA\BusScheduleApp\obj\Debug\BusSchedul
 C:\Users\Richard\Desktop\git\BusSchedulesWFA\BusScheduleApp\obj\Debug\BusScheduleApp.exe
 C:\Users\Richard\Desktop\git\BusSchedulesWFA\BusScheduleApp\obj\Debug\BusScheduleApp.pdb
 C:\Users\Richard\Desktop\git\BusSchedulesWFA\BusScheduleApp\obj\Debug\BusScheduleApp.Views.MainForm.resources
+C:\Users\Richard\Desktop\Git\BusSchedulesWFA\BusScheduleApp\obj\Debug\BusScheduleApp.Views.LongestRides.resources

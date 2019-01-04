@@ -1,11 +1,14 @@
-﻿namespace BusScheduleApp.Views
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+
+namespace BusScheduleApp.Views
 {
     partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -54,6 +57,7 @@
             this.last_element_button.Size = new System.Drawing.Size(25, 45);
             this.last_element_button.TabIndex = 15;
             this.last_element_button.UseVisualStyleBackColor = true;
+            this.last_element_button.Click += new System.EventHandler(this.last_element_button_Click);
             // 
             // up_one_element_button
             // 
@@ -63,6 +67,7 @@
             this.up_one_element_button.Size = new System.Drawing.Size(25, 28);
             this.up_one_element_button.TabIndex = 13;
             this.up_one_element_button.UseVisualStyleBackColor = true;
+            this.up_one_element_button.Click += new System.EventHandler(this.up_one_element_button_Click);
             // 
             // down_one_element_button
             // 
@@ -73,6 +78,7 @@
             this.down_one_element_button.Size = new System.Drawing.Size(25, 28);
             this.down_one_element_button.TabIndex = 12;
             this.down_one_element_button.UseVisualStyleBackColor = true;
+            this.down_one_element_button.Click += new System.EventHandler(this.down_one_element_button_Click);
             // 
             // edit_button
             // 
@@ -112,6 +118,7 @@
             this.first_element_button.Size = new System.Drawing.Size(25, 45);
             this.first_element_button.TabIndex = 16;
             this.first_element_button.UseVisualStyleBackColor = true;
+            this.first_element_button.Click += new System.EventHandler(this.first_element_button_Click);
             // 
             // bus_schedules_listview
             // 
@@ -164,6 +171,7 @@
             this.special_func_button.TabIndex = 17;
             this.special_func_button.Text = "See longest rides";
             this.special_func_button.UseVisualStyleBackColor = true;
+            this.special_func_button.Click += new System.EventHandler(this.special_func_button_Click);
             // 
             // delete_all_button
             // 
@@ -203,21 +211,21 @@
 
         #endregion
 
-        private System.Windows.Forms.Button last_element_button;
-        private System.Windows.Forms.Button up_one_element_button;
-        private System.Windows.Forms.Button down_one_element_button;
-        private System.Windows.Forms.Button edit_button;
-        private System.Windows.Forms.Button delete_button;
-        private System.Windows.Forms.Button add_button;
-        private System.Windows.Forms.Button first_element_button;
-        private System.Windows.Forms.ListView bus_schedules_listview;
-        private System.Windows.Forms.ColumnHeader BusNumber;
-        private System.Windows.Forms.ColumnHeader DepartingStation;
-        private System.Windows.Forms.ColumnHeader DestinationStation;
-        private System.Windows.Forms.ColumnHeader DepartingTime;
-        private System.Windows.Forms.ColumnHeader ArrivalTime;
-        private System.Windows.Forms.Button special_func_button;
-        private System.Windows.Forms.Button delete_all_button;
+        private Button last_element_button;
+        private Button up_one_element_button;
+        private Button down_one_element_button;
+        private Button edit_button;
+        private Button delete_button;
+        private Button add_button;
+        private Button first_element_button;
+        private ListView bus_schedules_listview;
+        private ColumnHeader BusNumber;
+        private ColumnHeader DepartingStation;
+        private ColumnHeader DestinationStation;
+        private ColumnHeader DepartingTime;
+        private ColumnHeader ArrivalTime;
+        private Button special_func_button;
+        private Button delete_all_button;
     }
 }
 

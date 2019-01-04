@@ -13,7 +13,7 @@ namespace BusScheduleApp.Repositories
             List<Bus> busScheduleList = new List<Bus>();
 
             OpenBusDbConnection();
-            string sql = "select * from BusSchedules";
+            string sql = "select * from BusSchedules order by departing_time";
             SQLiteCommand command = new SQLiteCommand(sql, MDbConnection);
             SQLiteDataReader reader = command.ExecuteReader();
             while (reader.Read())
@@ -66,12 +66,6 @@ namespace BusScheduleApp.Repositories
             command.Parameters.Add(new SQLiteParameter("@param1", bus.BusId));
             command.ExecuteNonQuery();
             CloseBusDbConnection();
-        }
-
-        public void Update(Bus oldBus, Bus newBus)
-        {
-            Delete(oldBus);
-            Create(newBus);
         }
 
         public void DeleteAll()

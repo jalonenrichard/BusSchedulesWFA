@@ -33,9 +33,18 @@ namespace BusScheduleApp.Services
             _busRepository.Delete(bus);
         }
 
-        public void UpdateBus(Bus oldBus, Bus newBus)
+        public List<Bus> GetLongestBusSchedules()
         {
-            _busRepository.Update(oldBus, newBus);
+            List<Bus> busList = GetAllBusSchedules();
+            List<Bus> longScheduleList = new List<Bus>();
+
+            foreach (var bus in busList)
+            {
+                if ((bus.ArrivalTime - bus.DepartingTime).TotalMinutes >= 140)
+                    longScheduleList.Add(bus);
+            }
+
+            return longScheduleList;
         }
     }
 }

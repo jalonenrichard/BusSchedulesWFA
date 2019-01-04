@@ -1,11 +1,14 @@
-﻿namespace BusScheduleApp.Views
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+
+namespace BusScheduleApp.Views
 {
     partial class AddBusForm
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -177,17 +180,17 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox bus_number_textbox;
-        private System.Windows.Forms.TextBox departing_station_textbox;
-        private System.Windows.Forms.TextBox destination_station_textbox;
-        private System.Windows.Forms.Label bus_number_label;
-        private System.Windows.Forms.Label departing_station_label;
-        private System.Windows.Forms.Label destination_station_label;
-        private System.Windows.Forms.Label departing_time_label;
-        private System.Windows.Forms.Label arrival_time_label;
-        private System.Windows.Forms.Button add_button;
-        private System.Windows.Forms.Button cancel_button;
-        private System.Windows.Forms.DateTimePicker departing_dateTimePicker;
-        private System.Windows.Forms.DateTimePicker arrival_dateTimePicker;
+        private TextBox bus_number_textbox;
+        private TextBox departing_station_textbox;
+        private TextBox destination_station_textbox;
+        private Label bus_number_label;
+        private Label departing_station_label;
+        private Label destination_station_label;
+        private Label departing_time_label;
+        private Label arrival_time_label;
+        private Button add_button;
+        private Button cancel_button;
+        private DateTimePicker departing_dateTimePicker;
+        private DateTimePicker arrival_dateTimePicker;
     }
 }
