@@ -7,7 +7,7 @@ namespace BusScheduleApp.Repositories
         List<T> GetAllBusSchedules();
         void Create(T bus);
         void Delete(T bus);
-        void Update(T bus);
+        void Update(T oldBus, T newBus);
         void DeleteAll();
     }
 }

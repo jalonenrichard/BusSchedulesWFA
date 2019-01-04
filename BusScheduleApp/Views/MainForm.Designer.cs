@@ -129,6 +129,7 @@
             this.bus_schedules_listview.TabIndex = 14;
             this.bus_schedules_listview.UseCompatibleStateImageBehavior = false;
             this.bus_schedules_listview.View = System.Windows.Forms.View.Details;
+            this.bus_schedules_listview.SelectedIndexChanged += new System.EventHandler(this.bus_schedules_listview_SelectedIndexChanged);
             // 
             // BusNumber
             // 
@@ -176,6 +177,7 @@
             // 
             // MainForm
             // 
+            this.AcceptButton = this.edit_button;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 561);

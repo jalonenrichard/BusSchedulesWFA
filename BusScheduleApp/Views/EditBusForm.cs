@@ -18,6 +18,10 @@ namespace BusScheduleApp.Views
             _mainForm = mainForm;
             _bus = bus;
             InitializeComponent();
+            departing_dateTimePicker.Format = DateTimePickerFormat.Custom;
+            departing_dateTimePicker.CustomFormat = @"dd.MM.yyy HH:mm";
+            arrival_dateTimePicker.Format = DateTimePickerFormat.Custom;
+            arrival_dateTimePicker.CustomFormat = @"dd.MM.yyyy HH:mm";
             FillBusData();
         }
 
@@ -26,21 +30,40 @@ namespace BusScheduleApp.Views
             bus_number_textbox.Text = _bus.BusNumber;
             departing_station_textbox.Text = _bus.DepartingStation;
             destination_station_textbox.Text = _bus.DestinationStation;
-            departing_dateTimePicker.Value = DateTime.Parse(_bus.DepartingTime);
-            arrival_dateTimePicker.Value = DateTime.Parse(_bus.ArrivalTime);
+            departing_dateTimePicker.Value = _bus.DepartingTime;
+            arrival_dateTimePicker.Value = _bus.ArrivalTime;
         }
 
         private void add_button_Click(object sender, EventArgs e)
         {
-            if (!AreAllFieldsFilled() || !ValuesChanged())
+            if (!AreAllFieldsFilled())
                 return;
+            if (!ValuesChanged())
+            {
+                Close();
+                return;
+            }
 
-            _busService.UpdateBus(_bus);
+            _busService.DeleteBus(_bus);
+            _busService.AddNewBus(new Bus()
+            {
+                BusNumber = bus_number_textbox.Text,
+                DepartingStation = departing_station_textbox.Text,
+                DestinationStation = destination_station_textbox.Text,
+                DepartingTime = departing_dateTimePicker.Value,
+                ArrivalTime = arrival_dateTimePicker.Value
+            });
+            _mainForm.RefreshBusListView();
+            Close();
         }
 
         private bool ValuesChanged()
         {
-            throw new NotImplementedException();
+            return bus_number_textbox.Text != _bus.BusNumber ||
+                   departing_station_textbox.Text != _bus.DepartingStation ||
+                   destination_station_textbox.Text != _bus.DestinationStation ||
+                   departing_dateTimePicker.Value != _bus.DepartingTime ||
+                   arrival_dateTimePicker.Value != _bus.ArrivalTime;
         }
 
         private bool AreAllFieldsFilled()
@@ -78,6 +101,11 @@ namespace BusScheduleApp.Views
                 return true;
 
             return false;
+        }
+
+        private void cancel_button_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

@@ -1,6 +1,6 @@
  	protected void CreateBusSchedulesTable()
         {
-            string sql = "create table BusSchedules (id INT PRIMARY KEY ," +
+            string sql = "create table BusSchedules (bus_id INT INTEGER PRIMARY KEY NOT NULL AUTOINCREMENT," +
                          "bus_number varchar(10)," +
                          "departing_station varchar(25)," +
                          "destination_station varchar(25)," +
@@ -9,6 +9,12 @@
             SQLiteCommand command = new SQLiteCommand(sql, MDbConnection);
             command.ExecuteNonQuery();
         }
+
+	protected void DropTable(){
+	string sql = "drop table BusSchedules";
+            SQLiteCommand command = new SQLiteCommand(sql, MDbConnection);
+            command.ExecuteNonQuery();
+}
 
         protected void AddTestDataToBusDb()
         {

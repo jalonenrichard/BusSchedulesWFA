@@ -39,12 +39,12 @@ namespace BusScheduleApp.Views
                 BusNumber = bus_number_textbox.Text,
                 DepartingStation = departing_station_textbox.Text,
                 DestinationStation = destination_station_textbox.Text,
-                DepartingTime = departing_dateTimePicker.Value.ToString("g"),
-                ArrivalTime = arrival_dateTimePicker.Value.ToString("g")
+                DepartingTime = departing_dateTimePicker.Value,
+                ArrivalTime = arrival_dateTimePicker.Value
             };
 
             _busService.AddNewBus(bus);
-            _mainForm.AddBusToListView();
+            _mainForm.RefreshBusListView();
 
             Close();
         }

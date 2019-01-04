@@ -33,9 +33,9 @@ namespace BusScheduleApp.Services
             _busRepository.Delete(bus);
         }
 
-        public void UpdateBus(Bus bus)
+        public void UpdateBus(Bus oldBus, Bus newBus)
         {
-            _busRepository.Update(bus);
+            _busRepository.Update(oldBus, newBus);
         }
     }
 }

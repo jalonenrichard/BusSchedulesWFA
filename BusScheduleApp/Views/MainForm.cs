@@ -13,6 +13,8 @@ namespace BusScheduleApp.Views
             InitializeComponent();
             _busService = new BusService();
             PopulateListView();
+            edit_button.Enabled = false;
+            delete_button.Enabled = false;
         }
 
         public void PopulateListView()
@@ -22,13 +24,13 @@ namespace BusScheduleApp.Views
                 ListViewItem row = new ListViewItem(bus.BusNumber) {Tag = bus};
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, bus.DepartingStation));
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, bus.DestinationStation));
-                row.SubItems.Add(new ListViewItem.ListViewSubItem(row, bus.DepartingTime));
-                row.SubItems.Add(new ListViewItem.ListViewSubItem(row, bus.ArrivalTime));
+                row.SubItems.Add(new ListViewItem.ListViewSubItem(row, bus.DepartingTime.ToString("g")));
+                row.SubItems.Add(new ListViewItem.ListViewSubItem(row, bus.ArrivalTime.ToString("g")));
                 bus_schedules_listview.Items.Add(row);
             }
         }
 
-        public void AddBusToListView()
+        public void RefreshBusListView()
         {
             bus_schedules_listview.Items.Clear();
             PopulateListView();
@@ -69,6 +71,20 @@ namespace BusScheduleApp.Views
                 Bus bus = (Bus) bus_schedules_listview.SelectedItems[0].Tag;
                 EditBusForm editBusForm = new EditBusForm(this, bus);
                 editBusForm.Show();
+            }
+        }
+
+        private void bus_schedules_listview_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            if (bus_schedules_listview.SelectedItems.Count > 0)
+            {
+                edit_button.Enabled = true;
+                delete_button.Enabled = true;
+            }
+            else
+            {
+                edit_button.Enabled = false;
+                delete_button.Enabled = false;
             }
         }
     }

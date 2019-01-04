@@ -12,8 +12,6 @@ namespace BusScheduleApp
         [STAThread]
         static void Main()
         {
-            /*BusRepository busRepository = new BusRepository();
-            busRepository.DeleteAll();*/
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());

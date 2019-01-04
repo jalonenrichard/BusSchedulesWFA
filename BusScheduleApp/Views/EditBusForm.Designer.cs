@@ -67,6 +67,7 @@
             this.cancel_button.TabIndex = 23;
             this.cancel_button.Text = "Cancel";
             this.cancel_button.UseVisualStyleBackColor = true;
+            this.cancel_button.Click += new System.EventHandler(this.cancel_button_Click);
             // 
             // add_button
             // 
@@ -146,8 +147,10 @@
             // 
             // EditBusForm
             // 
+            this.AcceptButton = this.add_button;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.cancel_button;
             this.ClientSize = new System.Drawing.Size(484, 176);
             this.Controls.Add(this.arrival_dateTimePicker);
             this.Controls.Add(this.departing_dateTimePicker);
