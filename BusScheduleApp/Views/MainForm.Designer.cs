@@ -100,6 +100,7 @@
             this.add_button.TabIndex = 8;
             this.add_button.Text = "Add New";
             this.add_button.UseVisualStyleBackColor = true;
+            this.add_button.Click += new System.EventHandler(this.add_button_Click);
             // 
             // first_element_button
             // 
@@ -135,22 +136,22 @@
             // DepartingStation
             // 
             this.DepartingStation.Text = "Departing Station";
-            this.DepartingStation.Width = 200;
+            this.DepartingStation.Width = 250;
             // 
             // DestinationStation
             // 
             this.DestinationStation.Text = "Destination Station";
-            this.DestinationStation.Width = 200;
+            this.DestinationStation.Width = 250;
             // 
             // DepartingTime
             // 
             this.DepartingTime.Text = "Departing Time";
-            this.DepartingTime.Width = 150;
+            this.DepartingTime.Width = 180;
             // 
             // ArrivalTime
             // 
             this.ArrivalTime.Text = "Arrival Time";
-            this.ArrivalTime.Width = 325;
+            this.ArrivalTime.Width = 195;
             // 
             // special_func_button
             // 
@@ -169,6 +170,7 @@
             this.delete_all_button.TabIndex = 18;
             this.delete_all_button.Text = "Delete All";
             this.delete_all_button.UseVisualStyleBackColor = true;
+            this.delete_all_button.Click += new System.EventHandler(this.delete_all_button_Click);
             // 
             // MainForm
             // 
@@ -187,6 +189,8 @@
             this.Controls.Add(this.add_button);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "MainForm";
             this.Text = "Bus Schedules";
             this.ResumeLayout(false);

@@ -12,6 +12,11 @@ namespace BusScheduleApp.Repositories
             m_dbConnection.Open();
         }
 
+        protected void CloseBusDbConnection()
+        {
+            m_dbConnection.Close();
+        }
+
         protected void CreateBusSchedulesTable()
         {
             string sql = "create table BusSchedules (id INT PRIMARY KEY ," +
@@ -31,24 +36,6 @@ namespace BusScheduleApp.Repositories
                 "values ('108', 'Vaana-Joesuu', 'Tallinn', '03/01/2019 08:00', '03/01/2019 08:30' )";
             SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
             command.ExecuteNonQuery();
-        }
-
-        protected void GetDataFromDb()
-        {
-            string sql = "select * from BusSchedules";
-            SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
-            SQLiteDataReader reader = command.ExecuteReader();
-            while (reader.Read())
-            {
-                string busNumber = reader["bus_number"].ToString();
-                string depStat = reader["departing_station"].ToString();
-                string depTime = reader["departing_time"].ToString();
-            }
-        }
-
-        protected void CloseBusDbConnection()
-        {
-            m_dbConnection.Close();
         }
     }
 }
