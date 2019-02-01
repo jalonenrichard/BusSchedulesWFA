@@ -1,16 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
 using BusScheduleApp.Models;
 using BusScheduleApp.Services;
+using Microsoft.Win32;
 
 namespace BusScheduleApp.Views
 {
     public partial class MainForm : Form
     {
         private readonly BusService _busService;
-        private Bus _deletedBus;
+        private List<Bus> _deletedBuses;
 
         public MainForm()
         {
@@ -19,6 +21,7 @@ namespace BusScheduleApp.Views
             PopulateListView();
             edit_button.Enabled = false;
             delete_button.Enabled = false;
+            _deletedBuses = new List<Bus>();
         }
 
         public void PopulateListView()
@@ -52,6 +55,7 @@ namespace BusScheduleApp.Views
                 MessageBoxIcon.Warning);
             if (userChoice == DialogResult.Yes)
             {
+                _deletedBuses.AddRange(_busService.GetAllBusSchedules());
                 _busService.DeleteAllBuses();
                 bus_schedules_listview.Items.Clear();
             }
@@ -62,7 +66,7 @@ namespace BusScheduleApp.Views
             if (bus_schedules_listview.SelectedItems.Count > 0)
             {
                 Bus bus = (Bus) bus_schedules_listview.SelectedItems[0].Tag;
-                _deletedBus = bus;
+                _deletedBuses.Add(bus);
                 _busService.DeleteBus(bus);
                 bus_schedules_listview.SelectedItems[0].Remove();
                 bus_schedules_listview.Update();
@@ -147,16 +151,20 @@ namespace BusScheduleApp.Views
         {
             try
             {
-                var matches = _busService.GetAllBusSchedules().Where(p => p.BusNumber == _deletedBus.BusNumber);
-                if (matches == null || !matches.Any())
+                if (_deletedBuses.Any())
                 {
-                    _busService.AddNewBus(_deletedBus);
-                    RefreshBusListView();
+                    var deletedBus = _deletedBuses.ElementAt(_deletedBuses.Count - 1);
+                    var matches = _busService.GetAllBusSchedules().Where(p => p.BusNumber == deletedBus.BusNumber);
+                    if (!matches.Any())
+                    {
+                        _busService.AddNewBus(deletedBus);
+                        RefreshBusListView();
+                        _deletedBuses.RemoveAt(_deletedBuses.Count - 1);
+                    }
                 }
             }
             catch (Exception exception)
             {
-                _deletedBus = null;
                 Debug.WriteLine("Undo error (nothing was deleted or bus already exists: " + exception.Message);
             }
         }
