@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.168
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusScheduleApp", "BusScheduleApp\BusScheduleApp.csproj", "{CB6E0557-074A-4988-BF38-88EB6607313C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CB6E0557-074A-4988-BF38-88EB6607313C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB6E0557-074A-4988-BF38-88EB6607313C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB6E0557-074A-4988-BF38-88EB6607313C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB6E0557-074A-4988-BF38-88EB6607313C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4BE57161-D251-4135-A8C9-4820698B0ECF}
+	EndGlobalSection
+EndGlobal

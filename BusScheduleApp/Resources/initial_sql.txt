@@ -1,0 +1,26 @@
+ 	protected void CreateBusSchedulesTable()
+        {
+            string sql = "create table BusSchedules (bus_id INT INTEGER PRIMARY KEY NOT NULL AUTOINCREMENT," +
+                         "bus_number varchar(10)," +
+                         "departing_station varchar(25)," +
+                         "destination_station varchar(25)," +
+                         "departing_time TEXT," +
+                         "arrival_time TEXT)";
+            SQLiteCommand command = new SQLiteCommand(sql, MDbConnection);
+            command.ExecuteNonQuery();
+        }
+
+	protected void DropTable(){
+	string sql = "drop table BusSchedules";
+            SQLiteCommand command = new SQLiteCommand(sql, MDbConnection);
+            command.ExecuteNonQuery();
+}
+
+        protected void AddTestDataToBusDb()
+        {
+            string sql =
+                "insert into BusSchedules (bus_number, departing_station, destination_station, departing_time, arrival_time) " +
+                "values ('108', 'Vaana-Joesuu', 'Tallinn', '03/01/2019 08:00', '03/01/2019 08:30' )";
+            SQLiteCommand command = new SQLiteCommand(sql, MDbConnection);
+            command.ExecuteNonQuery();
+        }
