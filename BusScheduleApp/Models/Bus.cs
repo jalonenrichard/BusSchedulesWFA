@@ -10,5 +10,10 @@ namespace BusScheduleApp.Models
         public string DestinationStation { get; set; }
         public DateTime DepartingTime { get; set; }
         public DateTime ArrivalTime { get; set; }
+
+        public override string ToString()
+        {
+            return $"[{BusId}, {BusNumber}]";
+        }
     }
 }

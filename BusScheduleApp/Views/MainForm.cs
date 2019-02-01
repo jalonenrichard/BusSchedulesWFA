@@ -13,6 +13,7 @@ namespace BusScheduleApp.Views
     {
         private readonly BusService _busService;
         private List<Bus> _deletedBuses;
+        private bool _deletedAll = false;
 
         public MainForm()
         {
@@ -55,6 +56,7 @@ namespace BusScheduleApp.Views
                 MessageBoxIcon.Warning);
             if (userChoice == DialogResult.Yes)
             {
+                _deletedAll = true;
                 _deletedBuses.AddRange(_busService.GetAllBusSchedules());
                 _busService.DeleteAllBuses();
                 bus_schedules_listview.Items.Clear();
@@ -68,8 +70,7 @@ namespace BusScheduleApp.Views
                 Bus bus = (Bus) bus_schedules_listview.SelectedItems[0].Tag;
                 _deletedBuses.Add(bus);
                 _busService.DeleteBus(bus);
-                bus_schedules_listview.SelectedItems[0].Remove();
-                bus_schedules_listview.Update();
+                RefreshBusListView();
             }
         }
 
@@ -151,7 +152,22 @@ namespace BusScheduleApp.Views
         {
             try
             {
-                if (_deletedBuses.Any())
+                Debug.WriteLine(_deletedAll);
+                Debug.WriteLine(string.Join(",", _deletedBuses));
+                if (!_deletedBuses.Any()) return;
+                if (_deletedAll)
+                {
+                    foreach (var bus in _deletedBuses)
+                    {
+                        _busService.AddNewBus(bus);
+                        //_deletedBuses.Remove(bus);
+                        RefreshBusListView();
+                        _deletedAll = false;
+                    }
+
+                    _deletedBuses.Clear();
+                }
+                else
                 {
                     var deletedBus = _deletedBuses.ElementAt(_deletedBuses.Count - 1);
                     var matches = _busService.GetAllBusSchedules().Where(p => p.BusNumber == deletedBus.BusNumber);
