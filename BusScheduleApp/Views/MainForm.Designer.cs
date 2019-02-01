@@ -47,6 +47,7 @@ namespace BusScheduleApp.Views
             this.ArrivalTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.special_func_button = new System.Windows.Forms.Button();
             this.delete_all_button = new System.Windows.Forms.Button();
+            this.undo_button = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // last_element_button
@@ -183,12 +184,23 @@ namespace BusScheduleApp.Views
             this.delete_all_button.UseVisualStyleBackColor = true;
             this.delete_all_button.Click += new System.EventHandler(this.delete_all_button_Click);
             // 
+            // undo_button
+            // 
+            this.undo_button.Location = new System.Drawing.Point(285, 8);
+            this.undo_button.Name = "undo_button";
+            this.undo_button.Size = new System.Drawing.Size(101, 23);
+            this.undo_button.TabIndex = 19;
+            this.undo_button.Text = "Undo";
+            this.undo_button.UseVisualStyleBackColor = true;
+            this.undo_button.Click += new System.EventHandler(this.undo_button_Click);
+            // 
             // MainForm
             // 
             this.AcceptButton = this.edit_button;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 561);
+            this.Controls.Add(this.undo_button);
             this.Controls.Add(this.delete_all_button);
             this.Controls.Add(this.special_func_button);
             this.Controls.Add(this.first_element_button);
@@ -226,6 +238,7 @@ namespace BusScheduleApp.Views
         private ColumnHeader ArrivalTime;
         private Button special_func_button;
         private Button delete_all_button;
+        private Button undo_button;
     }
 }
 

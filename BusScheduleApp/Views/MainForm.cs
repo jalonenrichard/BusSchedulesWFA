@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Linq;
 using System.Windows.Forms;
 using BusScheduleApp.Models;
 using BusScheduleApp.Services;
@@ -8,6 +10,7 @@ namespace BusScheduleApp.Views
     public partial class MainForm : Form
     {
         private readonly BusService _busService;
+        private Bus _deletedBus;
 
         public MainForm()
         {
@@ -59,6 +62,7 @@ namespace BusScheduleApp.Views
             if (bus_schedules_listview.SelectedItems.Count > 0)
             {
                 Bus bus = (Bus) bus_schedules_listview.SelectedItems[0].Tag;
+                _deletedBus = bus;
                 _busService.DeleteBus(bus);
                 bus_schedules_listview.SelectedItems[0].Remove();
                 bus_schedules_listview.Update();
@@ -136,6 +140,24 @@ namespace BusScheduleApp.Views
             {
                 bus_schedules_listview.Focus();
                 bus_schedules_listview.Items[bus_schedules_listview.Items.Count - 1].Selected = true;
+            }
+        }
+
+        private void undo_button_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var matches = _busService.GetAllBusSchedules().Where(p => p.BusNumber == _deletedBus.BusNumber);
+                if (matches == null || !matches.Any())
+                {
+                    _busService.AddNewBus(_deletedBus);
+                    RefreshBusListView();
+                }
+            }
+            catch (Exception exception)
+            {
+                _deletedBus = null;
+                Debug.WriteLine("Undo error (nothing was deleted or bus already exists: " + exception.Message);
             }
         }
     }
